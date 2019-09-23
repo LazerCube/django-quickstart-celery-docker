@@ -25,3 +25,6 @@ celerybeat.pid
 
 # Vscode config
 .vscode/settings.json
+
+# Environment File
+*.env
