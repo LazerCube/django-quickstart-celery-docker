@@ -1,0 +1,10 @@
+.pyc
+.sqlite3
+.git
+Dockerfile
+.DS_Store
+.gitignore
+README.md
+env.*
+celerybeat-schedule
+celerybeat.pid

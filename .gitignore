@@ -1,0 +1,27 @@
+# Python compiled byte code
+*.pyc
+
+# SQLite3 database
+*.sqlite3
+
+# ignore folder
+projectenv/
+staticfiles/
+mediafiles/
+logs/
+
+.DS_Store
+venv
+env
+__pycache__
+*.venv
+*.cache
+
+project/config/settings/api_settings.py
+
+# Celery Beat
+celerybeat-schedule
+celerybeat.pid
+
+# Vscode config
+.vscode/settings.json
