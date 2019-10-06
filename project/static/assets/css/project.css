@@ -1,0 +1,25 @@
+/* helpers */
+
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+ }
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+html,body {
+    font-size: 16px;
+    color: #343434;
+    background-color: #f5f5f5;
+}

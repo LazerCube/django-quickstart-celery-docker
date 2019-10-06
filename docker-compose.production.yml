@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.production
+      # - SECRET_KEY
+      #
+  nginx:
+    restart: on-failure
+    build: ./nginx/
+    # command: wait-for-it.sh web:8000 -- bash -c "nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+    volumes:
+      - ${PWD}/project/wait-for-it.sh:/bin/wait-for-it.sh
+      - static_volume:/www/static
+      - media_volume:/www/media
+    depends_on:
+      - web
+    networks:
+     - nginx_network

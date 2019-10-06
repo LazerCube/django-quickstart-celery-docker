@@ -1,0 +1,33 @@
+server {
+  listen 80;
+  server_name 127.0.0.1;
+  charset urf-8;
+
+  location /static/ {
+    alias /www/static/;
+  }
+
+  location /media/ {
+      alias /www/media/;
+  }
+
+  location /favicon.ico {
+      access_log off;
+      log_not_found off;
+      alias /www/static/favicon.ico;
+  }
+
+  location /robots.txt {
+      alias /www/static/static/robots.txt;
+  }
+
+  location / {
+      proxy_pass http://web:8000;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_connect_timeout 300s;
+      proxy_read_timeout 300s;
+  }
+}

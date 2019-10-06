@@ -1,0 +1,107 @@
+version: '3'
+
+services:
+  web:
+    restart: on-failure
+    build: ./project
+    image: quickstart-django-docker-image
+    env_file: .env
+    command: wait-for-it.sh postgres:5432 -- bash -c "python manage.py migrate && gunicorn config.wsgi:application -w 2 -b :8000"
+    expose:
+      - "8000"
+    links:
+      - postgres:postgres
+      - rabbitmq:rabbitmq
+    volumes:
+      - static_volume:/staticfiles
+      - media_volume:/mediafiles
+    networks:
+       - nginx_network
+       - database_network
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  postgres:
+    restart: on-failure
+    image: postgres:latest
+    networks:  # <-- connect to the bridge
+      - database_network
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  rabbitmq:
+    restart: on-failure
+    image: "rabbitmq:3-management"
+    environment:
+      # - RABBITMQ_ERLANG_COOKIE=${RABBITMQ_ERLANG_COOKIE}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST}
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - database_network
+      - nginx_network
+    volumes:
+      - rabbbitmq_data:/data
+
+  celery_beat:
+    image: quickstart-django-docker-image
+    env_file: .env
+    command: wait-for-it.sh rabbitmq:5672 -- wait-for-it.sh web:8000 -- bash -c "celery -A config beat --pidfile=/tmp/celeryd.pid -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler"
+    depends_on:
+      - postgres
+      - rabbitmq
+      - web
+    links:
+      - rabbitmq
+    volumes:
+      - media_volume:/mediafiles
+    networks:
+      - nginx_network
+      - database_network
+    restart: on-failure
+
+  celery_worker:
+    image: quickstart-django-docker-image
+    env_file: .env
+    command: wait-for-it.sh rabbitmq:5672 -- wait-for-it.sh app:8000 -- bash -c "celery -A config worker -l info"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+    volumes:
+      - media_volume:/mediafiles
+    depends_on:
+      - postgres
+      - rabbitmq
+      - web
+    links:
+      - rabbitmq
+    networks:
+      - nginx_network
+      - database_network
+    restart: on-failure
+
+networks:
+  nginx_network:
+    driver: bridge
+  database_network:  # <-- add the bridge
+    driver: bridge
+
+volumes:
+  static_volume:
+  media_volume:
+  postgres_data:
+  rabbbitmq_data:

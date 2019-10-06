@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block meta-head %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>{% block title  %}Django + Celery + Ngnix + Docker | {% endblock %}</title>
+        {% endblock %}
+        {% block styles-head %}
+            <!--  CSS  -->
+            <link type="text/css" href="{% static  'assets/css/project.css' %}" rel="stylesheet" />
+        {% endblock %}
+        {% block fonts-head %}
+            <!--  Fonts and icons -->
+        {% endblock %}
+        {% block js-head %}
+            <!--  Extra JS Files -->
+            {% block inline_javascript %}{% endblock %}
+            <!--   Core JS Files -->
+        {% endblock %}
+    </head>
+    
+    {% block body %}
+        <body>
+            {% block content %}
+            {% endblock %}
+        </body>
+    {% endblock %}
+</html>
