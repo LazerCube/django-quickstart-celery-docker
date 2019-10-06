@@ -1,4 +1,11 @@
 {% extends "core/base.html" %}
 
-<h1>Quickstart Django + Celery + Nginx + Docker</h1>
-<h3>Welcome</h3>
+{% block title %}{{ block.super }} | Welcome{% endblock%}
+
+{% block content %}
+<div style="text-align: center;">
+    <h1>Quickstart Django + Celery + Nginx + Docker</h1>
+    <h3>Looks like every thing is worked successfully! Congratulations!</h3>
+    <p>Enjoy!</p>
+</div>
+{% endblock%}
