@@ -19,6 +19,32 @@ instructions refer to the Docker [docs](https://docs.docker.com/compose/install/
 
 **Note:** For Docker terminal on vscode, windows use `eval $(docker-machine env dev --shell bash)`
 
+#### Add Enviroment File
+
+Create a `.env` file in the root of the project for any enviroment variables for the project.
+
+Example config:
+
+```.gitignore
+# Add Environment Variables
+
+COMPOSE_PROJECT_NAME=quickstart
+
+SECRET_KEY=aaabbbccc
+DB_NAME=postgres
+DB_USER=postgres
+DB_PASS=postgres
+DB_SERVICE=postgres
+DB_PORT=5432
+
+#RABBITMQ_ERLANGCOOKIE=SWQOKODSQALRPCLNMEQG
+RABBITMQ_DEFAULT_USER=rabbitmq
+RABBITMQ_DEFAULT_PASS=rabbitmq
+RABBITMQ_DEFAULT_VHOST=vhost1
+
+DJANGO_LOG_LEVEL=DEBUG
+```
+
 #### Compose
 
 The app can be run in development mode using Django's built in web server simply by executing
