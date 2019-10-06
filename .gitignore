@@ -17,8 +17,6 @@ __pycache__
 *.venv
 *.cache
 
-project/config/settings/api_settings.py
-
 # Celery Beat
 celerybeat-schedule
 celerybeat.pid
