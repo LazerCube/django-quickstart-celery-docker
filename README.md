@@ -1,6 +1,7 @@
 # Django + Ngnix + Celery + Docker
 
-RabbitMQ/http - port:15672
+**Django** 1.11.x
+**Python** 3.8
 
 ## Prerequisites
 
