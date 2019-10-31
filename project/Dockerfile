@@ -2,12 +2,12 @@
 # PROJECT
 # #######
 
-FROM python:2.7-slim
+FROM python:3-slim
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-# Pillow dependencies
+# Dependencies Pillow
 RUN apt-get update && apt-get install -y libjpeg-dev zlib1g-dev
 
 ADD . /usr/src/app
