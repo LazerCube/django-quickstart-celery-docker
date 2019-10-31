@@ -13,7 +13,7 @@ CURRENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.sep.join(CURRENT_DIR.split(os.path.sep)[:-1])
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vgoaax_+&_%jg&x#1+k*_bt#q4$fzo2f9f3#zyx7ci2n4w^&ab'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Debug settings
 DEBUG = True
@@ -25,6 +25,7 @@ DEFAULT_DOMAIN = 'https://{}'.format(ALLOWED_HOSTS[0])
 
 # Application definition
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -35,13 +36,12 @@ INSTALLED_APPS = [
     'modules.core',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -111,8 +111,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'mediafiles')
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 # One month
 
-# AUTH_USER_MODEL = 'authentication.User'
-
 CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672/vhost1'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_RESULT_BACKEND = 'django-db'
@@ -121,7 +119,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_RESULT_EXPIRES = 3600
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True

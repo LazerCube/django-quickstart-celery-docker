@@ -8,8 +8,6 @@ from .settings import  *
 DEBUG = True
 PRODUCTION = True
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
 # Email File backend
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = 'D:\\Desktop\\tmp\\app-messages'
