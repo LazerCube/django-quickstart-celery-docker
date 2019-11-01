@@ -1,7 +1,8 @@
 {% load staticfiles %}
+{% load html_debug %}
 
 <!doctype html>
-<html lang="en">
+<html lang="en-gb">
     <head>
         {% block meta-head %}
             <meta charset="utf-8">
@@ -15,17 +16,20 @@
         {% block fonts-head %}
             <!--  Fonts and icons -->
         {% endblock %}
-        {% block js-head %}
-            <!--  Extra JS Files -->
-            {% block inline_javascript %}{% endblock %}
-            <!--   Core JS Files -->
-        {% endblock %}
     </head>
     
     {% block body %}
         <body>
+            {% hdbg %}
+            {% if IS_DEBUG %}
+            <div id="banner">
+               <span>{{ DJANGO_ENVIRONMENT_NAME }}</span> 
+            </div>
+            {% endif %}
             {% block content %}
             {% endblock %}
+            <!--   Core JS Files -->
+            {% block inline_javascript %}{% endblock %}
         </body>
     {% endblock %}
 </html>

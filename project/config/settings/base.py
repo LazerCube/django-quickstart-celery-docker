@@ -20,7 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Default domain name. Needed for absolute urls in emails
+# # Default domain name. Needed for absolute urls in emails
 DEFAULT_DOMAIN = 'https://{}'.format(ALLOWED_HOSTS[0])
 
 # Application definition
@@ -66,10 +66,23 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                'modules.core.context_processors.django_environment_variable',
             ],
         },
     },
 ]
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = (os.path.join(PROJECT_ROOT, 'staticfiles'))
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+) #specifies all the folders on your system where Django should look for static files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'mediafiles')
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -83,31 +96,6 @@ DATABASES = {
         'PORT': (os.environ.get('DB_PORT','')),
     }
 }
-
-# Password validation
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-STATIC_URL = '/static/'
-STATIC_ROOT = (os.path.join(PROJECT_ROOT, 'staticfiles'))
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-) #specifies all the folders on your system where Django should look for static files
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'mediafiles')
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 # One month
 
@@ -130,49 +118,4 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'unique-snowflake',
     }
-}
-
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    # 'filters': {
-    #     'require_debug_false': {
-    #         '()': 'django.utils.log.RequireDebugFalse'
-    #     }
-    # },
-    'formatters': {
-        'default': {
-            'format': '[DJANGO] %(levelname)s %(asctime)s %(module)s '
-                      '%(name)s.%(funcName)s:%(lineno)s: %(message)s'
-        },
-    },
-    'handlers': {
-        # 'mail_admins': {
-        #     'level': 'ERROR',
-        #     'filters': ['require_debug_false'],
-        #     'class': 'django.utils.log.AdminEmailHandler'
-        # },
-        'console': {
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-            'class': 'logging.StreamHandler',
-            'formatter': 'default',
-        }
-    },
-    'loggers': {
-        '*': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-            'propagate': True,
-        },
-        # 'django.request': {
-        #     'handlers': ['mail_admins'],
-        #     'level': 'ERROR',
-        #     'propagate': True,
-        # },
-    },
 }
