@@ -4,7 +4,7 @@ import re
 
 from django.core.management.color import color_style
 
-from .base import  *
+from .base import *
 
 ansi_escape = re.compile(r'\x1b[^m]*m')
 
