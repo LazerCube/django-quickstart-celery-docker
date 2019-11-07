@@ -2,6 +2,20 @@ version: '3'
 
 services:
   web:
+    env_file: ./.env/.production
+
+  rabbitmq:
+    env_file: ./.env/.production
+
+  celery_beat:
+    env_file: ./.env/.production
+
+  celery_worker:
+    env_file: ./.env/.production
+
+  postgres:
+    env_file: ./.env/.production
+
   nginx:
     restart: on-failure
     build: ./nginx/

@@ -13,7 +13,6 @@ logs/
 
 .DS_Store
 venv
-env
 __pycache__
 *.venv
 *.cache
@@ -25,5 +24,6 @@ celerybeat.pid
 # Vscode config
 .vscode/settings.json
 
-# Environment File
-*.env
+# Ignore all Environment File Apart from local
+.env/*
+!.env/.development
