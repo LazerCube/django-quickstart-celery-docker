@@ -16,5 +16,5 @@ class IndexView(HtmlDebugMixin, TemplateView):
         # self.hdbg(self.request.META)
         kwargs = super().get_context_data(**kwargs)
 
-        console.dir(self.request.user)
+        # console(self.request.META)
         return kwargs

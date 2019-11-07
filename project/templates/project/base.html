@@ -26,8 +26,10 @@
                <span>{{ DJANGO_ENVIRONMENT_NAME }}</span> 
             </div>
             {% endif %}
-            {% block content %}
-            {% endblock %}
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
             <!--   Core JS Files -->
             {% block inline_javascript %}{% endblock %}
         </body>

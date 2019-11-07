@@ -1,4 +1,5 @@
 # Django + Ngnix + Celery + Docker
+[![Build Status](https://travis-ci.org/LazerCube/django-quickstart-celery-docker.svg?branch=master)](https://travis-ci.org/LazerCube/django-quickstart-celery-docker)
 
 **Django** 1.11.x
 **Python** 3.8
