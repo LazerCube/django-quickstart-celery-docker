@@ -2,8 +2,6 @@ version: '3'
 
 services:
   web:
-    environment:
-      DJANGO_ENV: production
   nginx:
     restart: on-failure
     build: ./nginx/

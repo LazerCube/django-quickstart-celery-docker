@@ -1,0 +1,19 @@
+sudo: required
+dist: trusty
+
+services:
+- docker
+
+install:
+- docker-compose pull
+- docker-compose build
+
+script:
+- docker-compose run -e DJANGO_SETTINGS_MODULE=config.settings.testing -e DJANGO_ENV=testing --no-deps --rm web pytest
+
+# deploy:
+#   - provider: script
+#     script: bash scripts/deploy.sh
+#     on:
+#       branch: master
+#     skip_cleanup: true

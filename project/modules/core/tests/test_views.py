@@ -29,10 +29,11 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Welcome To Django')
         environment_name = response.context.get('DJANGO_ENVIRONMENT_NAME', None)
-        self.assertTrue(environment_name in ['test', 'travis'])
+        console(environment_name)
+        self.assertTrue(environment_name in ['testing'])
 
         templates = list(map(lambda t: t.name, response.templates))
-        self.assertTrue('core/index.html' in templates)
+        self.assertTrue('core/welcome.html' in templates)
 
     def test_404_error_view(self):
         response = self.client.get('/this/url/does/not/exists/')
