@@ -4,6 +4,9 @@ dist: trusty
 services:
 - docker
 
+before_install:
+  - sudo service postgresql stop
+
 install:
 # - docker-compose pull
 - docker-compose build
@@ -13,7 +16,7 @@ before_script:
 
 script:
   # - docker-compose run -e DJANGO_SETTINGS_MODULE=config.settings.testing -e DJANGO_ENV=testing -e --no-deps --rm web pytest
-- docker-compose exec web pytest
+  - docker-compose exec web pytest
 
 after_script:
   - docker-compose down
