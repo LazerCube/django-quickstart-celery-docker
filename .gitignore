@@ -9,6 +9,7 @@ projectenv/
 staticfiles/
 mediafiles/
 logs/
+.pytest_cache/
 
 .DS_Store
 venv
