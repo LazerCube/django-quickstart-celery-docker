@@ -1,0 +1,86 @@
+/* helpers */
+
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+ }
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+html,body {
+    font-size: 14px;
+    color: #343434;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+p {
+    font-size: 16px;
+}
+
+#banner {
+    display:block;
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color:#b60000;
+    color: #fff;
+    padding: .5rem 0;
+    letter-spacing: 1px;
+}
+
+#core-debug {
+    background: #8b0000;
+    color:#fff;
+    /* border-bottom: 2px solid #ccc; */
+}
+
+#core-debug pre {
+    padding: 1rem;
+    line-height: 1.2rem;
+    overflow-wrap: break-word;
+    margin: 0;
+}
+
+/* #djDebug #djDebugToolbar {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#djDebug #djDebugToolbarHandle {
+    border: none!important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+#djDebug #djShowToolBarButton:hover {
+    background-color: #ffc!important;
+    color: #111!important;
+}
+
+#djDebug #djShowToolBarButton {
+    height: auto!important;
+    width: auto!important;
+    border: none!important;
+    color: #fff!important;
+    font-weight: normal!important;
+    text-decoration: none!important;
+    text-align: left!important;
+    text-indent: 0!important;
+    background: #000!important;
+    background-image: none!important;
+    opacity: 1.0!important;
+
+    padding: 4rem 1rem!important;
+    font-size: 1.5rem!important;
+} */
