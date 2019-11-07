@@ -8,8 +8,15 @@ install:
 # - docker-compose pull
 - docker-compose build
 
+before_script:
+  - docker-compose up -d
+
 script:
-- docker-compose run -e DJANGO_SETTINGS_MODULE=config.settings.testing -e DJANGO_ENV=testing --no-deps --rm web pytest
+  # - docker-compose run -e DJANGO_SETTINGS_MODULE=config.settings.testing -e DJANGO_ENV=testing -e --no-deps --rm web pytest
+- docker-compose exec web pytest
+
+after_script:
+  - docker-compose down
 
 # deploy:
 #   - provider: script

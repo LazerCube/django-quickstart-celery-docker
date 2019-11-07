@@ -30,7 +30,7 @@ class ViewTestCase(TestCase):
         self.assertContains(response, 'Welcome To Django')
         environment_name = response.context.get('DJANGO_ENVIRONMENT_NAME', None)
         console(environment_name)
-        self.assertTrue(environment_name in ['testing'])
+        self.assertTrue(environment_name in ['testing','development'])
 
         templates = list(map(lambda t: t.name, response.templates))
         self.assertTrue('core/welcome.html' in templates)
