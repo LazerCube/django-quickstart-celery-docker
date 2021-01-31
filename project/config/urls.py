@@ -18,7 +18,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__core__/', include('modules.core.urls'))
+    path('', include('modules.core.urls'))
 ]
 
 if settings.DEBUG:

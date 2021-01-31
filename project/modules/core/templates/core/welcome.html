@@ -20,6 +20,14 @@
             <td><code>{% templatetag openvariable %} DJANGO_ENVIRONMENT_NAME {% templatetag closevariable %}</code></td>
             <td><code>{{ DJANGO_ENVIRONMENT_NAME }}</code></td>
         </tr>
+        <tr>
+            <td><code>{% templatetag openvariable %} BUILD {% templatetag closevariable %}</code></td>
+            <td><code>{{ BUILD }}</code></td>
+        </tr>
+        <tr>
+            <td><code>{% templatetag openvariable %} VERSION {% templatetag closevariable %}</code></td>
+            <td><code>{{ VERSION }}</code></td>
+        </tr>
     </table>
 </div>
 {% endblock%}

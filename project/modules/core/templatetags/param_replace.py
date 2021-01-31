@@ -2,6 +2,8 @@ import logging
 
 from django import template
 
+from ..utils import console
+
 __all__ = [
     'param_replace',
 ]
