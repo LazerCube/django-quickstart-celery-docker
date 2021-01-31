@@ -12,6 +12,11 @@ import os
 CURRENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.sep.join(CURRENT_DIR.split(os.path.sep)[:-1])
 
+try:
+    modules.__build__ = subprocess.check_output(["git", "describe", "--tags", "--always"], cwd=PROJECT_ROOT).decode('utf-8').strip()
+except:
+    modules.__build__ = modules.__version__ + " ?"
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
@@ -67,6 +72,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'modules.core.context_processors.django_environment_variable',
+                'modules.core.context_processors.debug',
+                'modules.core.context_processors.build',
+                'modules.core.context_processors.version',
             ],
         },
     },
@@ -92,7 +100,7 @@ DATABASES = {
         'NAME': (os.environ.get('DB_NAME', '')),
         'USER': (os.environ.get('DB_USER','')),
         'PASSWORD': (os.environ.get('DB_PASS','')),
-        'HOST': (os.environ.get('DB_SERVICE','')),
+        'HOST': (os.environ.get('DB_Host','')),
         'PORT': (os.environ.get('DB_PORT','')),
     }
 }
@@ -102,10 +110,10 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 # One month
 CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672/vhost1'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_RESULT_EXPIRES = 3600
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_RESULT_EXPIRES = 3600
 
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
