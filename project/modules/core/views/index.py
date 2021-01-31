@@ -1,12 +1,11 @@
 from django.views.generic.base import TemplateView
 
-from ..mixins import HtmlDebugMixin
-from ..utils import console
+from modules.utils.mixins import HtmlDebugMixin
+from modules.utils.console import console
 
 __all__ = ['IndexView']
 
 console = console(source=__name__)
-
 
 class IndexView(HtmlDebugMixin, TemplateView):
     template_name = "core/welcome.html"

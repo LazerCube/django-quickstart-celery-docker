@@ -29,7 +29,7 @@ __all__ = ['console']
 class Console:
     """
     Custom object inspector. Example usage:
-        from ..utils import console         # or
+        from modules.utils.console import console         # or
         from baseapp.utils import console
         console = console(
             source=__name__,

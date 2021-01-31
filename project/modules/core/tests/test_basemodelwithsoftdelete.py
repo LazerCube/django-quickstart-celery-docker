@@ -1,7 +1,7 @@
 from django.db import connections
 from django.test import TestCase
 
-from ..utils import console
+from modules.utils.console import console
 from .base_models import Category, Member, Person, Post
 
 console = console(source=__name__)

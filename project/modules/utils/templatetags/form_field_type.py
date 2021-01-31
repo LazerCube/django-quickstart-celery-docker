@@ -2,7 +2,7 @@ import logging
 
 from django import template
 
-from ..utils import console
+from modules.utils.console import console
 
 register = template.Library()
 

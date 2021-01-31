@@ -9,13 +9,12 @@ from django.forms import TextInput
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
 
-from ..utils import console
+from modules.utils.console import console
 
 __all__ = ['CustomBaseModelAdmin', 'CustomBaseModelAdminWithSoftDelete']
 
 console = console(source=__name__)
 logger = logging.getLogger('app')
-
 
 class CustomBaseModelAdmin(admin.ModelAdmin):
     """

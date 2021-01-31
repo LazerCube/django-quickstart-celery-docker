@@ -3,7 +3,12 @@ import os
 from django.conf import settings
 from modules import __build__, __version__ 
 
-__all__ = ['django_environment_variable', 'debug']
+__all__ = [
+  'django_environment_variable', 
+  'debug',
+  'build',
+  'version'
+]
 
 def django_environment_variable(request):
     return {'DJANGO_ENVIRONMENT_NAME': os.environ.setdefault('DJANGO_ENV', 'development')}

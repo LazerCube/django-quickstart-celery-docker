@@ -11,7 +11,7 @@ from modules.core.views import (
     custom_500_error,
 )
 
-from ..utils import console
+from modules.utils.console import console
 
 console = console(source=__name__)
 

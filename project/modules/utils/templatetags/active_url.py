@@ -4,7 +4,7 @@ import re
 from django import template
 from django.urls import reverse, NoReverseMatch
 
-from ..utils import console
+from modules.utils.console import console
 
 __all__ = [
     'active_url',

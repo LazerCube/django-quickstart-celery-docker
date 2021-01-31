@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
-from ..utils import console
+from modules.utils.console import console
 
 __all__ = [
     'hdbg',

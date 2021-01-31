@@ -6,7 +6,7 @@ from django.db.models.deletion import Collector
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from ..utils import console
+from modules.utils.console import console
 from .signals import post_undelete, pre_undelete
 
 __all__ = ['BaseModel', 'BaseModelWithSoftDelete']
