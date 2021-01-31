@@ -5,7 +5,9 @@ services:
     restart: on-failure
     build: ./project
     image: quickstart-django-docker-image
-    env_file: ./.env/.development
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     command: wait-for-it.sh postgres:5432 -- bash -c "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn config.wsgi:application -w 2 -b :8000"
     expose:
       - "8000"
@@ -25,7 +27,9 @@ services:
   postgres:
     restart: on-failure
     image: postgres:latest
-    env_file: ./.env/.development
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     networks:  # <-- connect to the bridge
       - database_network
     ports:
@@ -36,7 +40,9 @@ services:
   rabbitmq:
     restart: on-failure
     image: "rabbitmq:3-management"
-    env_file: ./.env/.development
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     ports:
       - "15672:15672"
       - "5672:5672"
@@ -49,7 +55,9 @@ services:
   celery_beat:
     image: quickstart-django-docker-image
     command: wait-for-it.sh rabbitmq:5672 -- wait-for-it.sh web:8000 -- bash -c "celery -A config beat --pidfile=/tmp/celeryd.pid -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler"
-    env_file: ./.env/.development
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     depends_on:
       - postgres
       - rabbitmq
@@ -66,7 +74,9 @@ services:
   celery_worker:
     image: quickstart-django-docker-image
     command: wait-for-it.sh rabbitmq:5672 -- wait-for-it.sh app:8000 -- bash -c "celery -A config worker -l info"
-    env_file: ./.env/.development
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     deploy:
       replicas: 2
       restart_policy:

@@ -1,0 +1,12 @@
+# General
+# ------------------------------------------------------------------------------
+COMPOSE_PROJECT_NAME=quickstart
+SECRET_KEY=!!!DJANGO_SECRET_KEY!!!
+DJANGO_ENV=development
+
+# RABBITMQ
+# ------------------------------------------------------------------------------
+#RABBITMQ_ERLANGCOOKIE=SWQOKODSQALRPCLNMEQG
+RABBITMQ_DEFAULT_USER=rabbitmq
+RABBITMQ_DEFAULT_PASS=rabbitmq
+RABBITMQ_DEFAULT_VHOST=vhost1
