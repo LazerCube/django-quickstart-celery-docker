@@ -9,12 +9,12 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <title>{% block title  %}Django + Celery + Ngnix + Docker {% endblock %}</title>
         {% endblock %}
+        {% block fonts-head %}
+            <!--  Fonts and icons -->
+        {% endblock %}
         {% block styles-head %}
             <!--  CSS  -->
             <link type="text/css" href="{% static  '/project/css/project.css' %}" rel="stylesheet" />
-        {% endblock %}
-        {% block fonts-head %}
-            <!--  Fonts and icons -->
         {% endblock %}
     </head>
     
@@ -22,16 +22,16 @@
         <body>
             {% hdbg %}
             {% if IS_DEBUG %}
-            <div id="banner">
-               <span>{{ DJANGO_ENVIRONMENT_NAME }}</span> 
+            <div id="banner" class="fixed-top">
+                <span>{{ DJANGO_ENVIRONMENT_NAME }} - {{ BUILD }}</span> 
             </div>
             {% endif %}
             <div id="content">
                 {% block content %}
                 {% endblock %}
             </div>
-            <!--   Core JS Files -->
-            {% block inline_javascript %}{% endblock %}
+            <!--  JS Files -->
+            {% block javascript %}{% endblock %}
         </body>
     {% endblock %}
 </html>
