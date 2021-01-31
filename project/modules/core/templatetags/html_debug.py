@@ -1,3 +1,4 @@
+import logging
 import pprint
 
 from django import template
@@ -7,6 +8,14 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+from ..utils import console
+
+__all__ = [
+    'hdbg',
+]
+
+logger = logging.getLogger('app')
+console = console(source=__name__)
 
 @register.simple_tag(takes_context=True)
 def hdbg(context):
