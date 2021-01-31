@@ -11,10 +11,16 @@ RABBITMQ_DEFAULT_USER=rabbitmq
 RABBITMQ_DEFAULT_PASS=rabbitmq
 RABBITMQ_DEFAULT_VHOST=vhost1
 
-# PostgreSQL
+# PostgreSQL Setup
 # ------------------------------------------------------------------------------
-DB_SERVICE=postgres
-DB_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_DB=postgres
+POSTGRES_PASSWORD=postgres
+
+# App
+# ------------------------------------------------------------------------------
 DB_NAME=postgres
+DB_Host=postgres
+DB_PORT=5432
 DB_USER=postgres
 DB_PASS=postgres
